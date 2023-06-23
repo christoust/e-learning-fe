@@ -1,0 +1,11 @@
+<div class="course-search-container">
+    <h2>Course Search</h2>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by title">
+    <button (click)="search()">Search</button>
+    <ul>
+      <li *ngFor="let course of searchResults">
+        <a [routerLink]="['/courses', course.id]">{{ course.title }}</a>
+      </li>
+    </ul>
+  </div>
+  

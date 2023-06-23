@@ -1,0 +1,9 @@
+<h2>Course Details</h2>
+<div *ngIf="course">
+  <h3>{{ course.title }}</h3>
+  <p>{{ course.description }}</p>
+  <button (click)="enroll(course)">Enroll</button>
+  <div *ngIf="course.rating">
+    <p>Rating: {{ course.rating }}</p>
+  </div>
+</div>
