@@ -9,6 +9,7 @@ import { CourseitemComponent } from './courseitem/courseitem.component';
 import { AdminComponent } from './auth/admin/admin.component';
 import { ForbiddenComponent } from './auth/forbidden/forbidden.component';
 import { AuthGuard } from './_auth/auth.guard';
+import { AddcourseComponent } from './addcourse/addcourse.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'courses', component: CoursesComponent,canActivate:[AuthGuard], data:{roles:['User']}},
   { path: 'courseitem', component: CourseitemComponent,canActivate:[AuthGuard], data:{roles:['User']}},
-  { path: 'admin', component: AdminComponent,canActivate:[AuthGuard], data:{roles:['Admin']}},
+  { path: 'admin', component: AddcourseComponent,canActivate:[AuthGuard], data:{roles:['Admin']}},
   { path:'forbidden',component: ForbiddenComponent}
   // Add other routes for your components here
 ];

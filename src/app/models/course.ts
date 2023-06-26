@@ -1,5 +1,6 @@
 export class Course {
   courseId: number | undefined;
+  courseImageUrl: any |undefined
   courseName: string;
   courseDescription: string;
   courseImage: File | null;

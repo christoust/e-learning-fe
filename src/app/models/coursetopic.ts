@@ -1,0 +1,22 @@
+import { Course } from "./course";
+export class Coursetopic {
+    topic: Topic[]; // Assuming you have a model class called 'Topic'
+    course: Course; // Assuming you have a model class called 'Course'
+  
+    constructor(topic: Topic[], course: Course) {
+      this.topic = topic;
+      this.course = course;
+    }
+  }
+export class Topic {
+      topicName: string;
+      courseId: number;
+      topicContent: File | null;
+    
+      constructor(topicName: string, courseId: number, topicContent: File | null) {
+        this.topicName = topicName;
+        this.courseId = courseId;
+        this.topicContent = topicContent;
+      }
+  }
+  

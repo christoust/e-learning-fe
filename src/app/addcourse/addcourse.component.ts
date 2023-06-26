@@ -27,30 +27,37 @@ export class AddcourseComponent {
   addCourseAndTopic(): void {
     // const course = new Course(this.topic, this.description, this.image);
     const addCourseObservable = this.userDashboardService.addCourse(this.course);
-
-    const topicObservables = this.topics.map((topic: Topic) => {
-      return this.topicService.addTopic(topic);
-    });
-
     addCourseObservable.subscribe(
       (response: any) => {
         console.log('Course added successfully');
-        const courseId = response.courseId; // Get the auto-generated course ID from the response
-      this.topics.forEach((topic: Topic) => {
-        topic.courseId = courseId; // Set the course ID for each topic
-      });
-    },
-        // Process response if needed
+        const courseId = response.courseId;
+
+    const topicObservables = this.topics.map((topic: Topic) => {
+      topic.courseId = courseId;
+      return this.topicService.addTopic(topic);
+    });
+
+    // addCourseObservable.subscribe(
+    //   (response: any) => {
+    //     console.log('Course added successfully');
+    //     const courseId = response.course.courseId; // Get the auto-generated course ID from the response
+    //   this.topics.forEach((topic: Topic) => {
+    //     topic.courseId = courseId; // Set the course ID for each topic
+    //   });
+    // },
+    //     // Process response if needed
       
-      (error: any) => {
-        console.error('Failed to add course', error);
-        // Handle error if needed
-      }
-    );
+    //   (error: any) => {
+    //     console.error('Failed to add course', error);
+    //     // Handle error if needed
+    //   }
+    // );
 
     forkJoin(topicObservables).subscribe(
       (responses: any[]) => {
         console.log('Topics added successfully');
+      }
+    );
         // Process responses if needed
       },
       (error: any) => {

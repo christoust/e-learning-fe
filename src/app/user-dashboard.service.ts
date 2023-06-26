@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Course } from './models/course';
+import { Coursetopic } from './models/coursetopic';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +26,8 @@ export class UserDashboardService {
 
     return this.http.post<any>(`${this.apiUrl}/addcourse`, formData);
   }
+  getTopicsByCourse(courseId: number): Observable<Coursetopic> {
+    return this.http.get<Coursetopic>(`${this.apiUrl}/topicsByCourse/${courseId}`);
+  }
+  
 }
