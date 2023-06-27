@@ -20,6 +20,9 @@ import { UserService } from './authservice/user.service';
 import { AuthInterceptor } from './_auth/auth.interceptor';
 import { CoursecontentComponent } from './coursecontent/coursecontent.component';
 import { AddcourseComponent } from './addcourse/addcourse.component';
+import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+
+
 
 
 @NgModule({
@@ -45,7 +48,15 @@ import { AddcourseComponent } from './addcourse/addcourse.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('jwtToken'),
+        allowedDomains: ['example.com'], // Replace with your domain(s)
+        disallowedRoutes: ['http://example.com/auth/login'], // Replace with your login route(s)
+      },
+    }),
+   
   ],
   providers: [
     AuthGuard,
@@ -58,3 +69,4 @@ import { AddcourseComponent } from './addcourse/addcourse.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

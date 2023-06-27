@@ -4,11 +4,13 @@ export class Course {
   courseName: string;
   courseDescription: string;
   courseImage: File | null;
+  averageRating?: number;
 
   constructor(
     courseName: string,
     courseDescription: string,
-    courseImage: File | null
+    courseImage: File | null,
+    
   ) {
     this.courseName = courseName;
     this.courseDescription = courseDescription;

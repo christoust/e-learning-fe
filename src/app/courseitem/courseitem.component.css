@@ -79,9 +79,10 @@ body {
 
 .card{
 
-  margin-top: -15px;
-
- 
+  margin-top: 100px;
+  margin-bottom: 60vh;
+  object-fit: contain;
+ height: 10vh;
 
 }
 
@@ -256,6 +257,10 @@ body {
 
 
 .about-me {
+  margin-top: 40vh;
+  margin-left: 80vh;
+  width: 80vh;
+  height: 3vh;
 
   display: flex;
 
@@ -318,9 +323,11 @@ body {
 
 
 .footer {
+  /* padding-top: 100vh;
+  margin-top: 100vh; */
 
   display: flex;
-
+  flex-wrap: wrap;
   justify-content: space-between;
 
   align-items: center;
@@ -340,7 +347,7 @@ body {
 
 }
 
-
+/* 
 
 
 .bottom-links {
@@ -401,4 +408,39 @@ body {
   padding: 10px 20px;
 
 }
+ */
 
+ .intro {
+  /* Existing styles... */
+  text-align: left; /* Align course titles to the left */
+}
+
+.course-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.course-titles {
+  flex: 1;
+}
+
+.course-titles h2 {
+  font-size: 20px;
+}
+
+.course-titles ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.course-titles li {
+  margin-bottom: 10px;
+}
+
+.course-image {
+  flex: 1;
+  margin-left: 20px;
+  height: 10vh;
+}

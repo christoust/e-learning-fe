@@ -1,48 +1,102 @@
-import { Component } from '@angular/core';
-import { Coursetopic } from '../models/coursetopic';
+import { Component, OnInit } from '@angular/core';
+
+import { Coursetopic, Topic } from '../models/coursetopic';
+
 import { ActivatedRoute } from '@angular/router';
+
 import { UserDashboardService } from '../user-dashboard.service';
 
-
-
-
+import { Course } from '../models/course';
 
 @Component({
-
   selector: 'app-courseitem',
 
   templateUrl: './courseitem.component.html',
 
-  styleUrls: ['./courseitem.component.css']
-
+  styleUrls: ['./courseitem.component.css'],
 })
+export class CourseitemComponent implements OnInit {
+  courseId: number | undefined;
 
-export class CourseitemComponent {
+  course: Course | undefined;
 
-  courseTopic: Coursetopic= {} as Coursetopic;;
-  buttonText: string = 'Button Text';
+  topics: Topic[] | undefined;
 
   constructor(
     private route: ActivatedRoute,
+
     private userDashboardService: UserDashboardService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const courseId = +params['id']; // Assuming the route parameter is named 'id'
-      this.fetchCourseTopic(courseId);
+    this.route.params.subscribe((params) => {
+      this.route.params.subscribe((params) => {
+        this.courseId = +params['id'];
+
+        this.userDashboardService.getTopicsByCourse(this.courseId).subscribe(
+          (coursetopic: Coursetopic) => {
+            this.course = coursetopic.course;
+
+            this.topics = coursetopic.topic;
+          },
+
+          (error) => {
+            console.error('Error fetching course details:', error);
+          }
+        );
+      });
     });
   }
 
-  fetchCourseTopic(courseId: number): void {
-    this.userDashboardService.getTopicsByCourse(courseId).subscribe(
-      (response: Coursetopic) => {
-        this.courseTopic=response;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     // Handle error if needed
-      }
-    );
-  }
+  // ngOnInit() {
 
-  changeButtonText(): void {
-    // Implement the button functionality here
+  //   this.route.params.subscribe(params => {
+
+  //     this.courseId = params['id'];
+
+  //     this.courseService.getCourseById(this.courseId).subscribe(
+
+  //       (course: any) => {
+
+  //         this.course = course;
+
+  //       },
+
+  //       (error) => {
+
+  //         console.error('Error fetching course details:', error);
+
+  //       }
+
+  //     );
+
+  //   });
+
+  // }
+
+  // getCourseDetails(): void {
+
+  //   this.userDashboardService.getTopicsByCourse(this.courseId).subscribe(
+
+  //     (course: Course) => {
+
+  //       this.course = course;
+
+  //     },
+
+  //     (error) => {
+
+  //       console.error('Error retrieving course details:', error);
+
+  //     }
+
+  //   );
+
+  // }
+
+  buttonText: string = 'Enroll';
+
+  changeButtonText() {
+    this.buttonText = 'Enrolled';
   }
 }

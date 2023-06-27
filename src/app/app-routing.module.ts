@@ -18,9 +18,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'courses', component: CoursesComponent,canActivate:[AuthGuard], data:{roles:['User']}},
-  { path: 'courseitem', component: CourseitemComponent,canActivate:[AuthGuard], data:{roles:['User']}},
+  { path: 'courses/:id', component: CourseitemComponent,canActivate:[AuthGuard], data:{roles:['User']}},
   { path: 'admin', component: AddcourseComponent,canActivate:[AuthGuard], data:{roles:['Admin']}},
   { path:'forbidden',component: ForbiddenComponent}
+  
   // Add other routes for your components here
 ];
 
